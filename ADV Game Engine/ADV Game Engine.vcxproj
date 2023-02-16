@@ -133,14 +133,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="includes\ADV Game Engine\CoreMinimal.h" />
     <ClInclude Include="includes\ADV Game Engine\Game.h" />
     <ClInclude Include="includes\ADV Game Engine\Graphics\GraphicsEngine.h" />
+    <ClInclude Include="includes\ADV Game Engine\Graphics\VertexArrayObject.h" />
     <ClInclude Include="includes\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Source.cpp" />
     <ClCompile Include="source\ADV Game Engine\Game.cpp" />
     <ClCompile Include="source\ADV Game Engine\Graphics\GraphicsEngine.cpp" />
+    <ClCompile Include="source\ADV Game Engine\Graphics\VertexArrayObject.cpp" />
     <ClCompile Include="source\stb_image\stb_image.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

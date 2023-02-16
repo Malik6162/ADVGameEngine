@@ -1,5 +1,6 @@
 #include "ADV Game Engine/Game.h"
- 
+#include "ADV Game Engine/Graphics/GraphicsEngine.h"
+
 
 Game& Game::GetGameInstance()
 {
@@ -15,12 +16,14 @@ void Game::DestroyGameInstance()
 
 void Game::Start(const char* WTitle, bool bFullScreen, int WWidth, int WHeight)
 {
-	Graphics = new GraphicsEngine();
+	Graphics = make_shared<GraphicsEngine>();
  
 	if (!Graphics->InitGE(WTitle, bFullScreen, WWidth, WHeight))
 	{
 		bIsGameOver = true;
 	}
+
+
 
 	Run();
 }
@@ -34,21 +37,35 @@ Game::Game()
 
 Game::~Game()
 {
+	// this will destroy the graphics
+	Graphics = nullptr;
 	cout << "Game Over..." << endl;
 }
 
 void Game::Run()
 {
+	if (!bIsGameOver)
+	{
+		// craete a triangel 
+		Graphics->CreatVAO();
+	}
+
+
+	// as long as the game is not over run the loop 
+
 	while (!bIsGameOver)
 	{
+		// making sure the process what the user has done 
 		ProcessInput();
 
+		// apply the logic base on the game inputs and the game logics 
 		Update();
 
+		// render the screen 
 		Draw();
 
 	}
-
+	// claen the game after it ends 
 	    CloseGame();
 }
 
@@ -59,12 +76,28 @@ void Game::Update()
 
 void Game::ProcessInput()
 {
-	// handle input
+ 	SDL_Event PollEvent;
+
+	while (SDL_PollEvent(&PollEvent))
+	{
+		switch (PollEvent.type)
+		{
+		  case SDL_QUIT:
+
+		     bIsGameOver = true;
+		  break;
+
+		 default:
+			  break;
+		}
+	}
+
 }
 
 void Game::Draw()
 {
 	// draw graphics to screen
+	Graphics->Draw();
 }
 
 void Game::CloseGame()

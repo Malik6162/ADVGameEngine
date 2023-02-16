@@ -1,9 +1,8 @@
 #pragma once
-#include "iostream"
-#include "ADV Game Engine/Graphics/GraphicsEngine.h"
+  #include "ADV Game Engine/CoreMinimal.h"
 
 
-using namespace std;
+ 
 
 class Game
 {
@@ -44,5 +43,5 @@ private:
   // this variable will ends the game 
 		bool bIsGameOver;
 
-		GraphicsEngine* Graphics;
+		GraphicEnginePtr  Graphics;
 };
