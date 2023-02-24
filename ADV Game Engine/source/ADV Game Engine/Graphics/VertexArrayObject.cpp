@@ -2,11 +2,39 @@
 #include "GL/glew.h"
  
 
-VertexArrayObject::VertexArrayObject()
+VertexArrayObject::VertexArrayObject(GeometricShapes ChosenShape)
 {
 	ID = EAB  = VAB = 0;
-	Shape.PositionMatrix = PolyPositions;
-	Shape.IndicesMatrix  = PolyIndices;
+
+	// localised versions of the choosen matrices 
+
+	PositionMatrix ChosenPositions = PositionMatrix();
+	IndicesMatrix  ChosenIndices   =  IndicesMatrix();
+
+   // switch the chossen matrix on the selected 
+	switch (ChosenShape)
+	{
+	case GeometricShapes::Triangle:
+		 ChosenPositions = TrianglePositions;
+		 ChosenIndices  = TriangleIndices;
+		break;
+
+	case GeometricShapes::Polygon:
+		 ChosenPositions = PolyPositions;
+		 ChosenIndices = PolyIndices;
+		break;
+
+	case GeometricShapes::Circle:
+		 ChosenPositions = CirclePositions;
+		 ChosenIndices  = CircleIndices;
+		break;
+
+	default:
+		break;
+	}
+
+	Shape.PositionMatrix = ChosenPositions;
+	Shape.IndicesMatrix  = ChosenIndices;
 
 
 	// create the ID for our VAO
@@ -48,11 +76,25 @@ VertexArrayObject::VertexArrayObject()
 	     0,   // Data set -0 = first data set in the array 
          3,   // how many number in our matrix to make a triangle 
 		GL_FLOAT, GL_FALSE,  // data types wheather you want to normlize the values
-		sizeof(float) *3,   // stride the lenght it takes to get to each number  
+		sizeof(float) *6,   // stride the lenght it takes to get to each number  
 		(void*)0         // offSet of how many numbers to skip in the matrix 
 	);
 	// enable the vertix array
 	glEnableVertexAttribArray(0);
+
+	// Assign the colour to the shader 
+	glVertexAttribPointer(
+		1, 3, 
+		GL_FLOAT, GL_FALSE, 
+		sizeof(float) * 6, 
+		(void*) (3 * sizeof(float))
+	
+	);
+   //   enable the colour array 
+	glEnableVertexAttribArray(1);
+
+
+
 	// clear the buffer array
 	glBindVertexArray(0);
 

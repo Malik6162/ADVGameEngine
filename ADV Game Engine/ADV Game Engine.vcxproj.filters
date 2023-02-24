@@ -30,6 +30,9 @@
     <ClInclude Include="includes\ADV Game Engine\CoreMinimal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\ADV Game Engine\Graphics\ShaderProgram.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\stb_image\stb_image.cpp">
@@ -47,5 +50,12 @@
     <ClCompile Include="source\ADV Game Engine\Graphics\VertexArrayObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\ADV Game Engine\Graphics\ShaderProgram.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Game\Shaders\SimpleShader\SimpleShader.svert" />
+    <None Include="Game\Shaders\SimpleShader\SimpleShader.sfrag" />
   </ItemGroup>
 </Project>

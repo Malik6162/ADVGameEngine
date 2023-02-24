@@ -46,8 +46,20 @@ void Game::Run()
 {
 	if (!bIsGameOver)
 	{
+		Graphics->CreateShader({
+
+			L"Game/Shaders/SimpleShader/SimpleShader.svert", 
+			L"Game/Shaders/SimpleShader/SimpleShader.sfrag "
+			
+			});
+
+		 
+
+
+
 		// craete a triangel 
-		Graphics->CreatVAO();
+		Graphics->CreatVAO(GeometricShapes::Triangle);
+		Graphics->CreatVAO(GeometricShapes::Polygon);
 	}
 
 
