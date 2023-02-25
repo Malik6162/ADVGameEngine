@@ -125,9 +125,9 @@ void GraphicsEngine::Draw()
 
 		if (index == 0 )
 		{
-			tranform = glm::translate(tranform, glm::vec3(0.5f, 0.0f, 0.0f));
+			tranform = glm::translate(tranform, glm::vec3(0.3f, 0.0f, 0.0f));
 			// radian is a rotation amount 
-			tranform = glm::rotate(tranform, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+			tranform = glm::rotate(tranform, glm::radians(360.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 
 		//	tranform = glm::scale(tranform, glm::vec3(0.5f, 0.5f, 1.0f));
 		}

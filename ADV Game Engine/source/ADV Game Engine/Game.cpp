@@ -57,9 +57,10 @@ void Game::Run()
 
 
 
-		// craete a triangel 
+		// this will create following shapes 
 		Graphics->CreatVAO(GeometricShapes::Triangle);
 		Graphics->CreatVAO(GeometricShapes::Polygon);
+	//	Graphics->CreatVAO(GeometricShapes::Circle);
 	}
 
 
