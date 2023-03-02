@@ -31,6 +31,11 @@ public:
    // add a new shader 
 	void CreateShader(VFShaderParams ShaderFilePaths);
 
+	// create a texture and add it to the texture file 
+	// avoid duplicate texture
+	TexturePtr CreateTexture(const char* FilePath);
+
+
    private:
 	// this will hold the window 
 	SDL_Window* SdlWindow;
@@ -51,5 +56,6 @@ public:
 	// single Shader 
 	ShaderPtr Shader;
 
+	TexturePtrStack    TextureStack;
 
 };

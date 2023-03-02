@@ -5,6 +5,7 @@
 #include "ADV Game Engine/Graphics/ShaderProgram.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+#include "ADV Game Engine/Graphics/Texture.h"
 
  
 
@@ -17,7 +18,9 @@ GraphicsEngine::GraphicsEngine()
 
 GraphicsEngine::~GraphicsEngine()
 {
-	 
+	// remove textures from memory 
+	TextureStack.clear();
+
 // delete the sdl window from  memory 
 	SDL_DestroyWindow(SdlWindow);
 // destroy the gl context
@@ -176,6 +179,51 @@ void GraphicsEngine::CreateShader(VFShaderParams ShaderFilePaths)
 	// add the shader to our graphics engine 
 	Shader = NewShader;
 
+}
+
+TexturePtr GraphicsEngine::CreateTexture(const char* FilePath)
+{
+
+	TexturePtr NewTexture = nullptr;
+
+	// Run through all the textures and check if one with the same path exists 
+
+	for (TexturePtr TestTexture : TextureStack)
+	{
+		// if we find the texture with the same file path 
+		if (TestTexture->GetFilePath() == FilePath)
+		{
+			// pass in the already created texture
+			NewTexture = TestTexture;
+			cout << "Texture Found ! Assigning current texture " << endl;
+			break;
+		}
+
+
+	}
+
+		// if there is no texture already in the existance 
+		if (NewTexture == nullptr)
+		{
+			cout << "Creating a new texture " << endl;
+
+             // create a new texture as a shared ptr
+
+			NewTexture = make_shared<Texture>();
+
+			// if the filer was found assign it to the texture stack 
+
+			if (NewTexture->CreateTextureFromFilePath(FilePath))
+			{
+				cout << "Texture " << NewTexture->GetID()<<"Creating Success ! Adding to texture stack. " << endl;
+
+				// Add the texture to the texture stack 
+				TextureStack.push_back(NewTexture);
+				
+			}
+		}
+ 
+	return NewTexture;
 }
 
 

@@ -67,6 +67,13 @@ void ShaderProgram::SetMet4(const char* ShaderVariable, glm::mat4 Value)
 
 }
 
+void ShaderProgram::SetInt(const char* ShaderVarName, int Value)
+{
+	// find the uniform int value with the shaderVarname and assign it the value 
+	glUniform1i(glGetUniformLocation(ProgramID, ShaderVarName), Value);
+
+}
+
 bool ShaderProgram::AttachShader(const wchar_t* ShaderFilePath, ShaderTypes Type)
 {
 	// store the shader code 

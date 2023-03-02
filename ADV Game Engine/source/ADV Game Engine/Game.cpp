@@ -1,6 +1,6 @@
 #include "ADV Game Engine/Game.h"
 #include "ADV Game Engine/Graphics/GraphicsEngine.h"
-
+  
 
 Game& Game::GetGameInstance()
 {
@@ -33,6 +33,7 @@ Game::Game()
 	cout << "Game Initialised..." << endl;
 	Graphics = nullptr;
 	bIsGameOver = false;
+
 }
 
 Game::~Game()
@@ -48,16 +49,16 @@ void Game::Run()
 	{
 		Graphics->CreateShader({
 
-			L"Game/Shaders/SimpleShader/SimpleShader.svert", 
-			L"Game/Shaders/SimpleShader/SimpleShader.sfrag "
+			L"Game/Shaders/TextureShader/TextureShader.svert", 
+			L"Game/Shaders/TextureShader/TextureShader.sfrag "
 			
 			});
+ 
+		Graphics->CreateTexture("Game/Textures/ConcreteFloor.jpg");
+	 
 
 		 
-
-
-
-		// craete a triangel 
+		// craete a VAOs 
 		Graphics->CreatVAO(GeometricShapes::Triangle);
 		Graphics->CreatVAO(GeometricShapes::Polygon);
 	}
