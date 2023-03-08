@@ -6,6 +6,7 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "ADV Game Engine/Graphics/Texture.h"
+#include "ADV Game Engine/Graphics/Mesh.h"
 
  
 
@@ -18,8 +19,18 @@ GraphicsEngine::GraphicsEngine()
 
 GraphicsEngine::~GraphicsEngine()
 {
+	// clear the mesh stack 
+	MeshStack.clear();
+
+	//clear shader
+	Shader = nullptr;
+	
 	// remove textures from memory 
 	TextureStack.clear();
+
+
+
+
 
 // delete the sdl window from  memory 
 	SDL_DestroyWindow(SdlWindow);
@@ -116,40 +127,12 @@ void GraphicsEngine::Draw()
 
 	HandleWireframeMode(false);
 
-	vmuint index = 0;
-	// do anything that renders between these two functions 
-	for (VAOPtr VAO : VAOs)
+	// run through each mesh and call its draw method 
+
+	for (MeshPtr LMesh : MeshStack)
 	{
-		Shader->RunShader();
-
-		// move the object 
-		glm::mat4 tranform = glm::mat4(1.0f);
-		 
-
-		if (index == 0 )
-		{
-			tranform = glm::translate(tranform, glm::vec3(0.5f, 0.0f, 0.0f));
-			// radian is a rotation amount 
-			tranform = glm::rotate(tranform, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-
-		//	tranform = glm::scale(tranform, glm::vec3(0.5f, 0.5f, 1.0f));
-		}
-		else if (index == 1)
-		{
-			tranform = glm::translate(tranform, glm::vec3(-0.5f, 0.0f, 0.0f));
-			// x and y will be working for our 2D shapes 
-			tranform = glm::scale(tranform, glm::vec3(0.5f, 0.5f, 1.0f));
-		}
-
- 		Shader->SetMet4("transform", tranform);
-
-
-		// draw each VAO
-		VAO->Draw();
-		 
-		index++;
+		LMesh->Draw();
 	}
-	   
 
 	PresentGraphics();
 }
@@ -159,16 +142,27 @@ SDL_Window* GraphicsEngine::GetWindow() const
 	return SdlWindow;
 }
 
-void GraphicsEngine::CreatVAO(GeometricShapes Shape)
+MeshPtr GraphicsEngine::CreateSimpleMeshShape(GeometricShapes Shape, ShaderPtr MeshShader, TexturePtrStack MeshTextures)
 {
-	// create a new VAO as a shared pointer 
-	VAOPtr NewVAO = make_shared<VAO>(Shape);
-	//add it to the stack 
-	VAOs.push_back(NewVAO);
+	// initializ a new mesh class 
+
+	MeshPtr NewMesh = make_shared<Mesh>();
+
+	// make sure it worked 
+
+	if (!NewMesh->CreateSimpleShape(Shape, MeshShader, MeshTextures))
+		return nullptr;
+
+// add mesh into the stack of meshes to be rendered
+	MeshStack.push_back(NewMesh);
+
+	// retun the new mesh 
+	return NewMesh;
+
 
 }
 
-void GraphicsEngine::CreateShader(VFShaderParams ShaderFilePaths)
+ShaderPtr  GraphicsEngine::CreateShader(VFShaderParams ShaderFilePaths)
 {
 
 	ShaderPtr NewShader = make_shared<ShaderProgram>();
@@ -178,6 +172,8 @@ void GraphicsEngine::CreateShader(VFShaderParams ShaderFilePaths)
 
 	// add the shader to our graphics engine 
 	Shader = NewShader;
+
+	return NewShader;
 
 }
 

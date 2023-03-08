@@ -17,6 +17,13 @@ public:
 	// it will start the game and it will load the window
 	void Start(const char* WTitle, bool bFullScreen, int WWidth, int WHeight);
 	 
+	// Get percise delta time 
+	double GetDeltaTime()	{	return DeltaTime;	}
+
+	// get less percise delta time 
+	double GetFDeltaTime() {     return static_cast<float>(DeltaTime);    }
+	 
+
 
 private:
  
@@ -45,5 +52,13 @@ private:
 
 		GraphicEnginePtr  Graphics;
 
+		// Time between each frame 
+		double DeltaTime;
 
+
+		// temporary mesh variables 
+
+		MeshPtr Tri;
+		MeshPtr Poly;
+	 
 };

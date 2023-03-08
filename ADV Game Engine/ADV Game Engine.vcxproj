@@ -136,6 +136,8 @@
     <ClInclude Include="includes\ADV Game Engine\CoreMinimal.h" />
     <ClInclude Include="includes\ADV Game Engine\Game.h" />
     <ClInclude Include="includes\ADV Game Engine\Graphics\GraphicsEngine.h" />
+    <ClInclude Include="includes\ADV Game Engine\Math\Transformations.h" />
+    <ClInclude Include="includes\ADV Game Engine\Graphics\Mesh.h" />
     <ClInclude Include="includes\ADV Game Engine\Graphics\ShaderProgram.h" />
     <ClInclude Include="includes\ADV Game Engine\Graphics\Texture.h" />
     <ClInclude Include="includes\ADV Game Engine\Graphics\VertexArrayObject.h" />
@@ -145,6 +147,7 @@
     <ClCompile Include="Game\Source.cpp" />
     <ClCompile Include="source\ADV Game Engine\Game.cpp" />
     <ClCompile Include="source\ADV Game Engine\Graphics\GraphicsEngine.cpp" />
+    <ClCompile Include="source\ADV Game Engine\Graphics\Mesh.cpp" />
     <ClCompile Include="source\ADV Game Engine\Graphics\ShaderProgram.cpp" />
     <ClCompile Include="source\ADV Game Engine\Graphics\Texture.cpp" />
     <ClCompile Include="source\ADV Game Engine\Graphics\VertexArrayObject.cpp" />

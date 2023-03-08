@@ -12,8 +12,7 @@ typedef shared_ptr<GraphicsEngine> GraphicEnginePtr;
 class VertexArrayObject;
 typedef VertexArrayObject VAO;
 typedef shared_ptr<VAO> VAOPtr;
-typedef vector <VAOPtr> VAOStack;
-
+ 
 
 class Texture;
 typedef shared_ptr <Texture>TexturePtr;
@@ -24,6 +23,11 @@ typedef vector <TexturePtr> TexturePtrStack;
 class ShaderProgram;
 typedef shared_ptr <ShaderProgram> ShaderPtr;
 
+
+class Mesh;
+typedef shared_ptr<Mesh> MeshPtr;
+typedef vector <MeshPtr> MeshPtrStack;
+ 
 
 // useful for shape data and VAOs Matrices
 typedef vector <float> PositionMatrix;

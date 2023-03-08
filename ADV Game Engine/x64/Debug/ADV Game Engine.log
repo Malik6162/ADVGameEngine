@@ -1,7 +1,17 @@
-﻿  GraphicsEngine.cpp
-  VertexArrayObject.cpp
-C:\Users\Malik Arslan\OneDrive\Desktop\Advance Game Engine Programming\ADVGameEngine\ADV Game Engine\source\ADV Game Engine\Graphics\VertexArrayObject.cpp(138,2): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-  Generating Code...
+﻿  Game.cpp
+C:\Users\Malik Arslan\OneDrive\Desktop\Advance Game Engine Programming\ADVGameEngine\ADV Game Engine\source\ADV Game Engine\Game.cpp(112,38): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Malik Arslan\OneDrive\Desktop\Advance Game Engine Programming\ADVGameEngine\ADV Game Engine\source\ADV Game Engine\Game.cpp(114,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Malik Arslan\OneDrive\Desktop\Advance Game Engine Programming\ADVGameEngine\ADV Game Engine\source\ADV Game Engine\Game.cpp(118,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Malik Arslan\OneDrive\Desktop\Advance Game Engine Programming\ADVGameEngine\ADV Game Engine\source\ADV Game Engine\Game.cpp(123,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Malik Arslan\OneDrive\Desktop\Advance Game Engine Programming\ADVGameEngine\ADV Game Engine\source\ADV Game Engine\Game.cpp(127,47): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
   ADV Game Engine.vcxproj -> C:\Users\Malik Arslan\OneDrive\Desktop\Advance Game Engine Programming\ADVGameEngine\x64\Debug\ADV Game Engine.exe
   C:\Users\Malik Arslan\OneDrive\Desktop\Advance Game Engine Programming\ADVGameEngine\ADV Game Engine\lib\glew32.dll
   C:\Users\Malik Arslan\OneDrive\Desktop\Advance Game Engine Programming\ADVGameEngine\ADV Game Engine\lib\SDL2.dll
